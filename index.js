@@ -1,5 +1,8 @@
 const inquirer = require("inquirer");
-const fs = require("fs");
+const fs = require("fs").promises;
+const markdown = require("./utils/generateMarkdown");
+
+const FILE_NAME = "Auto_README.md";
 
 const questions = [
     {
@@ -57,12 +60,19 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+async function writeToFile(fileName, data) {
+    const result = await fs.writeFile(fileName, data);
+    return result;
+}
 
 // TODO: Create a function to initialize app
 async function init() {
     const answers = await inquirer.prompt(questions);
-    console.log(answers);
+    const markdownData = markdown(answers);
+    const error = await writeToFile(FILE_NAME, markdownData);
+    error
+        ? console.log("Error creating README.md")
+        : console.log("README.md successfully created!");
 }
 
 // Function call to initialize app
