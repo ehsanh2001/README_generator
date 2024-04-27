@@ -51,12 +51,6 @@ const questions = [
         name: "email",
         message: "Please enter your email address.",
     },
-    {
-        type: "input",
-        name: "questions",
-        message:
-            "Please provide instructions for how to reach you with questions.",
-    },
 ];
 
 // TODO: Create a function to write README file
