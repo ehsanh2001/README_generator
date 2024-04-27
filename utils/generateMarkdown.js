@@ -1,20 +1,58 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(license) {
+    if (license === "MIT") {
+        return "![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)";
+    } else if (license === "GNU GPLv3") {
+        return "![GitHub license](https://img.shields.io/badge/license-GNU%20GPLv3-blue.svg)";
+    } else if (license === "Apache 2.0") {
+        return "![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)";
+    } else if (license === "ISC") {
+        return "![GitHub license](https://img.shields.io/badge/license-ISC-blue.svg)";
+    } else {
+        return "";
+    }
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+    if (license === "MIT") {
+        return "https://opensource.org/licenses/MIT";
+    } else if (license === "GNU GPLv3") {
+        return "https://www.gnu.org/licenses/gpl-3.0";
+    } else if (license === "Apache 2.0") {
+        return "https://opensource.org/licenses/Apache-2.0";
+    } else if (license === "ISC") {
+        return "https://opensource.org/licenses/ISC";
+    } else {
+        return "";
+    }
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function renderLicenseSection(license) {
+    if (license === "None") {
+        return "";
+    }
+    let licenseLink = renderLicenseLink(license);
+    return `
+## License
+
+This project is licensed under the [${license}](${licenseLink}) license.
+
+`;
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+    const licenseSection = renderLicenseSection(data.license);
+    const licenseBadge = renderLicenseBadge(data.license);
+
     return `# ${data.title}
 
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+${licenseBadge}
 
 ## Description
 
@@ -46,9 +84,7 @@ ${data.installation}
 
 ${data.usage}
 
-## License
-
-This project is licensed under the ${data.license} license.
+${licenseSection}
 
 ## Contributing
 
