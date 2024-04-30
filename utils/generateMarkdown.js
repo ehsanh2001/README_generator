@@ -50,7 +50,7 @@ function generateMarkdown(data) {
     const licenseSection = renderLicenseSection(data.license);
     const licenseBadge = renderLicenseBadge(data.license);
     const licenseLink =
-        data.license === "None" ? "" : `\n* [License](#license)\n`;
+        data.license === "None" ? "" : `\n  * [License](#license)\n`;
 
     return `# ${data.title}
 
