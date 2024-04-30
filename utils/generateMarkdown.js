@@ -49,6 +49,8 @@ This project is licensed under the [${license}](${licenseLink}) license.
 function generateMarkdown(data) {
     const licenseSection = renderLicenseSection(data.license);
     const licenseBadge = renderLicenseBadge(data.license);
+    const licenseLink =
+        data.license === "None" ? "" : `\n* [License](#license)\n`;
 
     return `# ${data.title}
 
@@ -63,11 +65,9 @@ ${data.description}
   * [Installation](#installation)
 
   * [Usage](#usage)
-
-  * [License](#license)
-
+  
   * [Contributing](#contributing)
-
+  ${licenseLink}
   * [Tests](#tests)
 
   * [Questions](#questions)
