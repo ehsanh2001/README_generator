@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs").promises;
 const markdown = require("./utils/generateMarkdown");
 
-const FILE_NAME = "Auto_README.md";
+const FILE_NAME = "./output/Auto_README.md";
 
 const questions = [
     {
