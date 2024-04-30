@@ -37,56 +37,53 @@ function renderLicenseSection(license) {
         return "";
     }
     let licenseLink = renderLicenseLink(license);
-    return `
-## License
+    return `## License
 
-This project is licensed under the [${license}](${licenseLink}) license.
-
-`;
+This project is licensed under the [${license}](${licenseLink}) license.`;
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-    const licenseSection = renderLicenseSection(data.license);
-    const licenseBadge = renderLicenseBadge(data.license);
-    const licenseLink =
-        data.license === "None" ? "" : `\n  * [License](#license)\n`;
+    let licenseSection = "";
+    let licenseBadge = "";
+    let licenseLink = "";
+    if (data.license !== "None") {
+        licenseSection = `\n${renderLicenseSection(data.license)}\n`;
+        licenseBadge = `\n${renderLicenseBadge(data.license)}\n`;
+        licenseLink = `\n* [License](#license)\n`;
+    }
 
     return `# ${data.title}
-
 ${licenseBadge}
-
 ## Description
 
 ${data.description}
 
 ## Table of Contents
 
-  * [Installation](#installation)
+* [Installation](#installation)
 
-  * [Usage](#usage)
+* [Usage](#usage)
   
-  * [Contributing](#contributing)
-  ${licenseLink}
-  * [Tests](#tests)
+* [Contribution](#contribution)
+${licenseLink}
+* [Tests](#tests)
 
-  * [Questions](#questions)
+* [Questions](#questions)
 
-  ## Installation
+## Installation
 
-  To install necessary dependencies, run the following command:
+To install necessary dependencies, run the following command:
 
-\`\`\`
+\`\`\`text
 ${data.installation}
 \`\`\`
   
 ## Usage
 
 ${data.usage}
-
 ${licenseSection}
-
-## Contributing
+## Contribution
 
 ${data.contributing}
 
@@ -94,14 +91,13 @@ ${data.contributing}
 
 To run tests, run the following command:
 
-\`\`\`
+\`\`\`text
 ${data.tests}
 \`\`\`
 
 ## Questions
 
 If you have any questions about the repo, open an issue or contact me directly at ${data.email}. You can find more of my work at [${data.github}](https://github.com/${data.github}/).
-
 `;
 }
 
